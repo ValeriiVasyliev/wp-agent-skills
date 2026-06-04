@@ -23,7 +23,24 @@ Practical rules:
 - use `wp_unslash()` before sanitizing when needed
 - use prepared statements for SQL; avoid interpolating user input into queries
 
+## Output escaping contexts
+
+Escape at output, using the function that matches the context:
+
+* HTML text: `esc_html()`
+* HTML attribute: `esc_attr()`
+* URL: `esc_url()`
+* textarea: `esc_textarea()`
+* JSON/script data: `wp_json_encode()`
+* allowed HTML: `wp_kses_post()` or `wp_kses()`
+
+## AJAX handlers
+
+* For `wp_ajax_*`, verify nonce and check capabilities.
+* For `wp_ajax_nopriv_*`, assume unauthenticated attacker-controlled traffic.
+* Return JSON with `wp_send_json_success()` or `wp_send_json_error()`.
+* Do not expose private data from AJAX responses.
+
 Common review guidance:
 
 - https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/
-
