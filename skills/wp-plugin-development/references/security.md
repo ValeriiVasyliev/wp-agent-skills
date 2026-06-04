@@ -31,8 +31,11 @@ Escape at output, using the function that matches the context:
 * HTML attribute: `esc_attr()`
 * URL: `esc_url()`
 * textarea: `esc_textarea()`
-* JSON/script data: `wp_json_encode()`
-* allowed HTML: `wp_kses_post()` or `wp_kses()`
+* JavaScript strings: `esc_js()`
+
+For JSON data, prefer `wp_json_encode()` and pass data through WordPress script APIs such as `wp_add_inline_script()` or `wp_localize_script()`.
+
+For user-provided HTML, restrict allowed markup with `wp_kses_post()` or `wp_kses()` before output.
 
 ## AJAX handlers
 
